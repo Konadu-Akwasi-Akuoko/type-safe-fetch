@@ -1,0 +1,54 @@
+{
+  "quotes": [
+    {
+      "id": "1",
+      "text": "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.",
+      "author": "Martin Golding"
+    },
+    {
+      "id": "2",
+      "text": "All computers wait at the same speed.",
+      "author": "Unknown"
+    },
+    {
+      "id": "3",
+      "text": "A misplaced decimal point will always end up where it will do the greatest damage.",
+      "author": "Unknown"
+    },
+    {
+      "id": "4",
+      "text": "A good programmer looks both ways before crossing a one-way street.",
+      "author": "Unknown"
+    },
+    {
+      "id": "5",
+      "text": "A computer program does what you tell it to do, not what you want it to do.",
+      "author": "Unknown"
+    },
+    {
+      "id": "6",
+      "text": "\"Intel Inside\" is a Government Warning required by Law.",
+      "author": "Unknown"
+    },
+    {
+      "id": "7",
+      "text": "Common sense gets a lot of credit that belongs to cold feet.",
+      "author": "Arthur Godfrey"
+    },
+    {
+      "id": "8",
+      "text": "Chuck Norris doesn’t go hunting. Chuck Norris goes killing.",
+      "author": "Unknown"
+    },
+    {
+      "id": "9",
+      "text": "Chuck Norris counted to infinity... twice.",
+      "author": "Unknown"
+    },
+    {
+      "id": "10",
+      "text": "C is quirky, flawed, and an enormous success.",
+      "author": "Unknown"
+    }
+  ]
+}
