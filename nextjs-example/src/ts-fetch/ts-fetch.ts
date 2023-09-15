@@ -15,17 +15,17 @@ async function main() {
     return {
       query: async () => {
         const request = await fetch(url, options);
-        const data: z.infer<T> = await request.json();
+        const data: z.infer<typeof responseSchema> = await request.json();
         return data;
       },
       bodySchema: function <U extends ZodTypeAny>(bodySchema: U) {
         return {
-          mutation: async (body: z.infer<U>) => {
+          mutation: async (body: z.infer<typeof bodySchema>) => {
             const request = await fetch(url, {
               ...options,
               body: JSON.stringify(body),
             });
-            const data: z.infer<T> = await request.json();
+            const data: z.infer<typeof responseSchema> = await request.json();
             return data;
           },
         };
