@@ -15,8 +15,38 @@ async function main() {
     return {
       query: async () => {
         const request = await fetch(url, options);
-        const data: z.infer<typeof responseSchema> = await request.json();
-        return data;
+        const {
+          body,
+          bodyUsed,
+          headers,
+          ok,
+          redirected,
+          status,
+          statusText,
+          type,
+          url: responseUrl,
+        }: Response = request;
+
+        return {
+          arrayBuffer: request.arrayBuffer.bind(request),
+          blob: request.blob.bind(request),
+          body,
+          bodyUsed,
+          clone: request.clone.bind(request),
+          formData: request.formData.bind(request),
+          headers,
+          ok,
+          redirected,
+          status,
+          statusText,
+          text: request.text.bind(request),
+          type,
+          url: responseUrl,
+          json: async () => {
+            const data: z.infer<typeof responseSchema> = await request.json();
+            return data;
+          },
+        };
       },
       bodySchema: function <U extends ZodTypeAny>(bodySchema: U) {
         return {
@@ -29,6 +59,12 @@ async function main() {
             return data;
           },
         };
+      },
+      // For a POST, PATCH, DELETE, mutation, etc request without a body
+      mutation: async () => {
+        const request = await fetch(url, options);
+        const data: z.infer<typeof responseSchema> = await request.json();
+        return data;
       },
     };
   }
@@ -49,9 +85,19 @@ async function main() {
     }),
   });
 
-  const response = await tsFetch.query();
+  try {
+    const response = await tsFetch.query();
 
-  console.log(response.endpoint);
+    if (!response.ok) {
+      throw new Error("Response is not okay");
+    }
+    // console.log(await response.body);
+    // console.log((await response.json()).data.quotes);
+    console.log(await response.text());
+  } catch (e) {
+    console.error("Error message:");
+    console.log(e);
+  }
 
   // POST request with a body
   const postFetch = await proposedFetch({
@@ -78,7 +124,7 @@ async function main() {
     )
     .mutation({ author: "Konadu", text: "Hello World" });
 
-  console.log(postResponse);
+  // console.log(postResponse);
 
   // POST without a body
   const postFetchWithoutBody = await proposedFetch({
@@ -96,11 +142,9 @@ async function main() {
     }),
   });
 
-  const postResponseWithoutBody = await postFetchWithoutBody
-    .bodySchema(z.null())
-    .mutation(null);
+  const postResponseWithoutBody = await postFetchWithoutBody.mutation();
 
-  console.log(postResponseWithoutBody);
+  // console.log(postResponseWithoutBody);
 }
 
 main();

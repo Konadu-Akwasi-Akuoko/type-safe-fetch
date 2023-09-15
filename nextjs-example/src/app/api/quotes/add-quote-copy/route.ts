@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   // console.log(request);
   // const { text, author } = request;
   return NextResponse.json({
-    endpoint: "quotes/add-quote",
+    endpoint: "quotes/add-quote-copy",
     method: req.method,
     // body: request,
     // data: { text, author },
