@@ -28,18 +28,18 @@ async function main() {
         }: Response = request;
 
         return {
-          arrayBuffer: request.arrayBuffer.bind(request),
-          blob: request.blob.bind(request),
+          arrayBuffer: () => request.arrayBuffer(),
+          blob: () => request.blob(),
           body,
           bodyUsed,
-          clone: request.clone.bind(request),
-          formData: request.formData.bind(request),
+          clone: () => request.clone(),
+          formData: () => request.formData(),
           headers,
           ok,
           redirected,
           status,
           statusText,
-          text: request.text.bind(request),
+          text: () => request.text(),
           type,
           url: responseUrl,
           json: async () => {
