@@ -9,7 +9,7 @@ async function main() {
    * @param responseSchema - A Zod schema that defines the expected shape of the response data.
    * @returns An object with three methods: `query`, `bodySchema`, and `mutation`.
    */
-  function proposedFetch<T extends ZodTypeAny>({
+  function tsFetch<T extends ZodTypeAny>({
     url,
     options,
     responseSchema,
@@ -348,7 +348,7 @@ async function main() {
   }
 
   // GET request
-  const tsFetch = await proposedFetch({
+  const tsFetchUsage = await tsFetch({
     url: "http://localhost:3000/api/quotes",
     options: { method: "GET", cache: "no-cache" },
     responseSchema: z.object({
@@ -364,7 +364,7 @@ async function main() {
   });
 
   try {
-    const response = await tsFetch.query();
+    const response = await tsFetchUsage.query();
 
     if (!response.ok) {
       throw new Error("Response is not okay");
@@ -378,7 +378,7 @@ async function main() {
   }
 
   // POST request with a body
-  const postFetch = await proposedFetch({
+  const postFetch = await tsFetch({
     url: "http://localhost:3000/api/quotes/add-quote",
     options: {
       method: "POST",
@@ -406,7 +406,7 @@ async function main() {
   // console.log(await postResponse.json());
 
   // POST without a body
-  const postFetchWithoutBody = await proposedFetch({
+  const postFetchWithoutBody = await tsFetch({
     url: "http://localhost:3000/api/quotes/add-quote-without-body",
     options: {
       method: "POST",
