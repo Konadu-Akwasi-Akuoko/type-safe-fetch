@@ -344,6 +344,7 @@ async function main() {
           },
         };
       },
+      responseType: () => responseSchema,
     };
   }
 
@@ -362,6 +363,9 @@ async function main() {
       }),
     }),
   });
+
+  const responseType1 = tsFetchUsage.responseType();
+  type responseType = z.infer<typeof responseType1>;
 
   try {
     const response = await tsFetchUsage.query();
