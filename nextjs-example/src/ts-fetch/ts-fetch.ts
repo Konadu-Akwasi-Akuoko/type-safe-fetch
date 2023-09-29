@@ -133,7 +133,7 @@ async function main() {
           /**
            * Sends a `POST`, `PUT`, `PATCH`, or `DELETE` request to a specified URL with the provided options and a request body.
            * Returns the response data with a json method parsed according to the provided response schema.
-           * @param bodyObject - The request body object that will be sent with the HTTP request. It should match the shape defined by the `bodySchema` provided when calling the `bodySchema` method of `proposedFetch`.
+           * @param bodyObject - The request body object that will be sent with the HTTP request. It should match the shape defined by the `bodySchema` provided when calling the `bodySchema` method of `tsFetch`.
            * @returns An object with methods to access the response data, such as `arrayBuffer`, `blob`, `body`, `clone`, `formData`, `headers`, `ok`, `redirected`, `status`, `statusText`, `text`, `type`, `url`, and `json`. The `json` method returns the parsed JSON data.
            */
           mutation: async (
@@ -344,6 +344,11 @@ async function main() {
           },
         };
       },
+      /**
+       * Returns the response schema defined in the `tsFetch` function.
+       * 
+       * @returns The response schema defined in the `tsFetch` function.
+       */
       responseType: () => responseSchema,
     };
   }
