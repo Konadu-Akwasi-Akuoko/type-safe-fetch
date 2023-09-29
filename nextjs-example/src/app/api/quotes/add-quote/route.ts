@@ -7,11 +7,8 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   const request = await req.json();
   console.log(request);
-  const { text, author } = request;
   return NextResponse.json({
     endpoint: "quotes/add-quote",
     method: req.method,
-    body: request,
-    data: { text, author },
   });
 }
