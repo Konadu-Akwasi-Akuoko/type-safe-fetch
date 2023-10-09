@@ -87,17 +87,7 @@ export default function tsFetch<T extends ZodTypeAny>({
       json: () => Promise<z.infer<typeof responseSchema>>;
     }> => {
       const request = await fetch(url, options);
-      const {
-        body,
-        bodyUsed,
-        headers,
-        ok,
-        redirected,
-        status,
-        statusText,
-        type,
-        url: responseUrl,
-      }: Response = request;
+      const { body, bodyUsed, headers, ok, redirected, status, statusText, type, url: responseUrl }: Response = request;
 
       return {
         arrayBuffer: () => request.arrayBuffer(),
@@ -126,7 +116,7 @@ export default function tsFetch<T extends ZodTypeAny>({
      * @returns An object with a `mutation` method for sending a `POST` | `PUT` | `PATCH` | `DELETE`
      * request with a request body that is parsed according to the provided body schema.
      */
-    bodySchema: function <U extends ZodTypeAny>(bodySchema: U) {
+    bodySchema: <U extends ZodTypeAny>(bodySchema: U) => {
       return {
         /**
          * Sends a `POST`, `PUT`, `PATCH`, or `DELETE` request to a specified URL with the provided options and a request body.
@@ -135,7 +125,7 @@ export default function tsFetch<T extends ZodTypeAny>({
          * @returns An object with methods to access the response data, such as `arrayBuffer`, `blob`, `body`, `clone`, `formData`, `headers`, `ok`, `redirected`, `status`, `statusText`, `text`, `type`, `url`, and `json`. The `json` method returns the parsed JSON data.
          */
         mutation: async (
-          bodyObject: z.infer<typeof bodySchema>
+          bodyObject: z.infer<typeof bodySchema>,
         ): Promise<{
           /**
            * Sends an HTTP request and returns the response as an ArrayBuffer.
@@ -308,17 +298,7 @@ export default function tsFetch<T extends ZodTypeAny>({
       json: () => Promise<z.infer<typeof responseSchema>>;
     }> => {
       const request = await fetch(url, options);
-      const {
-        body,
-        bodyUsed,
-        headers,
-        ok,
-        redirected,
-        status,
-        statusText,
-        type,
-        url: responseUrl,
-      }: Response = request;
+      const { body, bodyUsed, headers, ok, redirected, status, statusText, type, url: responseUrl }: Response = request;
 
       return {
         arrayBuffer: () => request.arrayBuffer(),

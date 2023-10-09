@@ -1,4 +1,4 @@
-import { ZodTypeAny, z } from 'zod';
+import { ZodTypeAny, z } from "zod";
 
 /**
  * Makes an HTTP request and handles the response.
