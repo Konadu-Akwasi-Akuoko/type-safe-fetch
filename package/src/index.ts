@@ -13,7 +13,7 @@ export default function tsFetch<T extends ZodTypeAny>({
   responseSchema,
 }: {
   url: string;
-  options: Omit<RequestInit, "body">;
+  options?: Omit<RequestInit, "body">;
   responseSchema: T;
 }) {
   return {
