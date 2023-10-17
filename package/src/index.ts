@@ -7,13 +7,31 @@ import { ZodTypeAny, z } from "zod";
  * @param responseSchema - A Zod schema that defines the expected shape of the response data.
  * @returns An object with three methods: `query`, `bodySchema`, and `mutation`.
  */
-export default function tsFetch<T extends ZodTypeAny>({
+export function tsFetch<T extends ZodTypeAny>({
+  /**
+   * @param url - The URL of the API endpoint to send the request to.
+   */
   url,
+  /**
+   * @param options - An object containing the options for the request if any, excluding the `body` option.
+   */
   options,
+  /**
+   * @param responseSchema - A Zod schema that defines the expected shape of the response data.
+   */
   responseSchema,
 }: {
+  /**
+   * @param url - The URL of the API endpoint to send the request to.
+   */
   url: string;
+  /**
+   * @param options - An object containing the options for the request if any, excluding the `body` option.
+   */
   options?: Omit<RequestInit, "body">;
+  /**
+   * @param responseSchema - A Zod schema that defines the expected shape of the response data.
+   */
   responseSchema: T;
 }) {
   return {
