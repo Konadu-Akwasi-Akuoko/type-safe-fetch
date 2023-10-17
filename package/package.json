@@ -1,11 +1,13 @@
 {
-  "name": "ts-fetch-example",
+  "name": "ts-fetch",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "tsup",
+    "start:server": "json-server --watch pokemon.json",
     "test": "jest",
+    "test:watch": "json-server --watch pokemon.json && jest --watch",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
@@ -21,6 +23,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
     "babel-jest": "^29.7.0",
+    "concurrently": "^8.2.1",
     "eslint": "^8.51.0",
     "jest": "^29.7.0",
     "jest-fetch-mock": "^3.0.3",

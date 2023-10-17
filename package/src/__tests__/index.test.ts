@@ -3,7 +3,7 @@ import { tsFetch } from "../index";
 
 describe("tsFetch", () => {
   const baseUrl = "http://localhost:3000";
-  it("should fetch data from the json-server API, and match the first id", async () => {
+  it("perform a search", async () => {
     const { query } = tsFetch({
       url: `${baseUrl}/posts`,
       responseSchema: z.array(
