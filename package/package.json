@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsup",
     "start:server": "json-server --watch pokemon.json",
-    "test": "concurrently --kill-others \"json-server pokemon.json\" \"jest\"",
-    "test:watch": "concurrently \"json-server --watch pokemon.json\" \"jest --watch\"",
+    "test": "concurrently --kill-others -n \"server,test\" \"json-server pokemon.json\" \"jest\"",
+    "test:watch": "concurrently -n \"server,test\" \"json-server --watch pokemon.json\" \"jest --watch\"",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
